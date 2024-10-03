@@ -1,0 +1,47 @@
+img {
+    width: 100%;
+    aspect-ratio: 16/9;
+}
+
+.video-card {
+    max-width: 400px;
+    margin-top: 1rem;
+    padding: 10px;
+}
+
+.title {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    margin-bottom: 0px !important;
+    max-height: 36px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap; 
+}
+
+.btn {
+    margin: 5px;
+    border-radius: 0px !important;
+}
+
+svg {
+    margin-top: -3px;
+}
+
+.card  {
+    border-radius: 0px !important;
+}
+
+section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 991px) {
+    .video-card {
+        max-width: 100%;
+        padding: 0px;
+        margin-top: 20px;
+    }
+}

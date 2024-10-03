@@ -1,0 +1,43 @@
+.header-video {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1178px;
+}
+
+strong {
+    color: #79FF84;
+}
+
+.pb-2 {
+    align-items: center;
+    display: flex;
+}
+
+@media only screen and (max-width: 600px) {
+
+    app-video-filter {
+        margin-bottom: 1rem;
+    }
+    
+}
+
+@media only screen and (max-width: 991px) {
+
+    .banner {
+        justify-content: center;
+        text-align: center;
+    }
+    .container {
+        padding-bottom: 1rem !important;
+    }
+
+}
+
+@media only screen and (max-width: 1400px) {
+
+    .header-video {
+        max-width: 774px;
+    }
+
+}

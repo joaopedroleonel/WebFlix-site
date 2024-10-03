@@ -1,0 +1,21 @@
+<div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5 banner">
+        <div class="col-10 col-sm-8 col-lg-6 img-banner">
+            <img src="logo.png" class="d-block mx-lg-auto img-fluid" width="700" loading="lazy">
+        </div>
+        <div class="col-lg-6">
+            <h1 class="display-5 text-body-emphasis mb-3" style="font-weight: 250; line-height: 1.2;">WebFlix, onde você encontra <strong>filmes online</strong> com facilidade e sem enrolação!</h1>
+        </div>
+    </div>
+</div>
+
+<section class="container px-4 py-5">
+    <div style="display: flex; justify-content: center;">
+    <div class="header-video">
+        <h2 class="pb-2">Catálogo de <strong style="font-style: italic; margin-left: 9px;">Filmes</strong></h2> <app-video-filter (genreFilter)="genreFilter($event)" [genres]="genresList"></app-video-filter>
+    </div>
+    </div>
+    <app-video-list [videoList]="videoList"></app-video-list>
+</section>
+
+<app-footer></app-footer>

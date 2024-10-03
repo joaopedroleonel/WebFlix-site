@@ -1,0 +1,27 @@
+<section>
+<div class="video-card" *ngFor="let element of videoListInput">
+    <img src="{{urlImage + element.imageUrl}}" alt="">
+    <p class="title">{{element.title}}</p>
+    <div style="margin-bottom: 5px; display: flex;">
+       <div *ngFor="let gen of element.genres; let i = index" class="text-secondary">
+          <p style="margin-bottom: 0px;" *ngIf="i == 0">{{gen.name}}</p>
+          <p style="margin-bottom: 0px;" *ngIf="i != 0">, {{gen.name}}</p>
+        </div>
+    </div>
+
+    <a href="/video/{{element.videoID}}" class="btn btn-light" style="margin-left: 0px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+        <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"/>
+        </svg> Assistir</a>
+
+    <button class="btn btn-secondary" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + element.videoID" aria-expanded="false" [attr.aria-controls]="'collapse' + element.videoID"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-filter-left" viewBox="0 0 16 16">
+        <path d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/>
+      </svg> Ler resumo</button>
+
+    <div class="collapse" id="collapse{{element.videoID}}">
+        <div class="card card-body">
+          {{element.description}}
+        </div>
+    </div>
+</div>
+</section>

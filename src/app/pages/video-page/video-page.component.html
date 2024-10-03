@@ -1,0 +1,18 @@
+<section> 
+    <div>
+        <app-video-player src="{{videoPlayerInfo?.videoUrl}}"></app-video-player>
+        <div class="video-details">
+            <div style="padding: 10px;">
+                <h1 class="text-break">{{videoPlayerInfo?.title}}</h1>
+                <div style="margin-bottom: 5px; display: flex;">
+                    <div *ngFor="let gen of videoPlayerInfo?.genres; let i = index" class="text-secondary">
+                        <p style="margin-bottom: 0px;" *ngIf="i == 0">{{gen.name}}</p>
+                        <p style="margin-bottom: 0px;" *ngIf="i != 0">, {{gen.name}}</p>
+                    </div>
+                </div>
+                <p class="text-break">{{videoPlayerInfo?.description}}</p>
+                <a href="/" class="btn btn-secondary">Voltar</a>
+            </div>
+        </div>
+    </div>
+</section>

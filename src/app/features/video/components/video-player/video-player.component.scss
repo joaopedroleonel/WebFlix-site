@@ -1,0 +1,11 @@
+video {
+    width: 100vw;
+    height: 495px;
+    background-color: black;
+}
+
+@media only screen and (max-width: 600px) {
+    video {
+        height: 250px;
+    }
+}
