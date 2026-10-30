@@ -1,2 +1,2 @@
-export const urlApi = "https://apicsharp.lasanhassegatto.top/api";
-export const urlServer = "https://lasanhassegatto.top/archives/"
+export const urlApi = "http://localhost:5000/api";
+export const urlServer = "http://localhost:8080/archives/"

@@ -1,27 +1,94 @@
-# Site
+# WebFlix
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.4.
+Plataforma de streaming de filmes feita em **Angular**. O site lista o catálogo de filmes, permite filtrar por gênero e reproduzir os vídeos direto no navegador, consumindo uma API REST.
 
-## Development server
+## Funcionalidades
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Catálogo de filmes:** cards com capa, título, gêneros e botão "Ler resumo" que expande a sinopse
+- **Filtro por gênero:** dropdown com a lista de gêneros vinda da API, com opção "Todos"
+- **Página do filme:** player de vídeo HTML5 com título, gêneros, descrição e botão "Voltar"
+- **Loader global:** spinner exibido automaticamente durante qualquer requisição à API
+- Tema escuro com Bootstrap
 
-## Code scaffolding
+## Tecnologias
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- [Angular 18](https://angular.dev/) com NgModules
+- TypeScript
+- RxJS
+- SCSS
+- [Bootstrap 5.3](https://getbootstrap.com/) (via CDN)
+- Karma e Jasmine para testes unitários
 
-## Build
+## Rotas
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+| Rota | Página |
+| --- | --- |
+| `/` | Home com banner e catálogo de filmes |
+| `/video/:id` | Player e detalhes do filme |
 
-## Running unit tests
+## Estrutura
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+src/app/
+├── core/
+│   ├── services/api.service.ts     # requisições HTTP à API
+│   └── url-api.ts                  # URLs da API e do servidor de arquivos
+├── features/video/
+│   ├── components/
+│   │   ├── video-filter/           # dropdown de filtro por gênero
+│   │   ├── video-list/             # grade de cards do catálogo
+│   │   └── video-player/           # player de vídeo
+│   └── interfaces/video.ts         # tipos VideoListI e GenreI
+├── pages/
+│   ├── home/                       # página inicial
+│   └── video-page/                 # página do filme
+└── shared/
+    ├── components/
+    │   ├── footer/
+    │   └── loader-page/            # spinner de carregamento em tela cheia
+    └── services/loader.service.ts  # estado do loader com BehaviorSubject
+```
 
-## Running end-to-end tests
+## Integração com a API
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+As URLs ficam em `src/app/core/url-api.ts` e por padrão apontam para o ambiente local:
 
-## Further help
+| Constante | Padrão | Uso |
+| --- | --- | --- |
+| `urlApi` | `http://localhost:5000/api` | Base da API REST |
+| `urlServer` | `http://localhost:8080/archives/` | Servidor de onde são carregadas as capas e os vídeos |
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Ajuste as portas conforme a sua API e o seu servidor de arquivos.
+
+Endpoints consumidos:
+
+| Método | Endpoint | Uso |
+| --- | --- | --- |
+| GET | `/Video/videoList` | Lista todos os filmes |
+| GET | `/Genre` | Lista os gêneros para o filtro |
+| GET | `/Video/genre?genreId={id}` | Lista os filmes de um gênero |
+| GET | `/Video/{id}` | Detalhes e URL do vídeo de um filme |
+
+Todas as chamadas passam pelo `ApiService`, que mostra o loader ao iniciar a requisição e o esconde ao terminar, com sucesso ou erro.
+
+## Como rodar
+
+Requer [Node.js](https://nodejs.org/) 18.19+, 20.11+ ou 22+.
+
+```sh
+git clone https://github.com/joaopedroleonel/WebFlix-site.git
+cd WebFlix-site
+npm install
+npm start
+```
+
+Acesse `http://localhost:4200`.
+
+## Scripts
+
+| Comando | Descrição |
+| --- | --- |
+| `npm start` | Servidor de desenvolvimento com recarregamento automático |
+| `npm run build` | Build de produção em `dist/site` |
+| `npm run watch` | Build de desenvolvimento em modo watch |
+| `npm test` | Testes unitários com Karma |
