@@ -4,6 +4,10 @@ Plataforma de streaming de filmes feita em **Angular**. O site lista o catálogo
 
 O backend fica no repositório [WebFlix-api](https://github.com/joaopedroleonel/WebFlix-api): uma API REST em Spring Boot com MySQL, mais o Nginx que serve as capas e os vídeos.
 
+## Demonstração
+
+https://github.com/user-attachments/assets/7a63a0f2-e26a-425d-af95-9ac967062912
+
 ## Funcionalidades
 
 - **Catálogo de filmes:** cards com capa, título, gêneros e botão "Ler resumo" que expande a sinopse
