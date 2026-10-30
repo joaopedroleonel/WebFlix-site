@@ -2,6 +2,8 @@
 
 Plataforma de streaming de filmes feita em **Angular**. O site lista o catálogo de filmes, permite filtrar por gênero e reproduzir os vídeos direto no navegador, consumindo uma API REST.
 
+O backend fica no repositório [WebFlix-api](https://github.com/joaopedroleonel/WebFlix-api): uma API REST em Spring Boot com MySQL, mais o Nginx que serve as capas e os vídeos.
+
 ## Funcionalidades
 
 - **Catálogo de filmes:** cards com capa, título, gêneros e botão "Ler resumo" que expande a sinopse
@@ -51,14 +53,19 @@ src/app/
 
 ## Integração com a API
 
-As URLs ficam em `src/app/core/url-api.ts` e por padrão apontam para o ambiente local:
+O site depende de dois serviços do repositório [WebFlix-api](https://github.com/joaopedroleonel/WebFlix-api), e os dois sobem juntos com Docker Compose:
+
+- **API REST (Spring Boot):** fornece o catálogo, os gêneros e os dados de cada filme
+- **Nginx:** serve os arquivos de capa (`.jpg`) e de vídeo (`.mp4`)
+
+As URLs ficam em `src/app/core/url-api.ts` e por padrão apontam para as portas que o WebFlix-api usa localmente:
 
 | Constante | Padrão | Uso |
 | --- | --- | --- |
 | `urlApi` | `http://localhost:5000/api` | Base da API REST |
-| `urlServer` | `http://localhost:8080/archives/` | Servidor de onde são carregadas as capas e os vídeos |
+| `urlServer` | `http://localhost:8080/archives/` | Nginx de onde são carregadas as capas e os vídeos |
 
-Ajuste as portas conforme a sua API e o seu servidor de arquivos.
+A API devolve só o nome do arquivo em `imageUrl` e `videoUrl`, e o site monta a URL completa juntando esse nome com `urlServer`.
 
 Endpoints consumidos:
 
@@ -72,6 +79,18 @@ Endpoints consumidos:
 Todas as chamadas passam pelo `ApiService`, que mostra o loader ao iniciar a requisição e o esconde ao terminar, com sucesso ou erro.
 
 ## Como rodar
+
+### 1. Backend
+
+Suba a API, o banco e o Nginx seguindo o [README do WebFlix-api](https://github.com/joaopedroleonel/WebFlix-api#readme). Com Docker:
+
+```sh
+git clone https://github.com/joaopedroleonel/WebFlix-api.git
+cd WebFlix-api
+docker compose up --build
+```
+
+### 2. Frontend
 
 Requer [Node.js](https://nodejs.org/) 18.19+, 20.11+ ou 22+.
 
